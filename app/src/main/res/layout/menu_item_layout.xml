@@ -17,7 +17,7 @@
         android:clipChildren="false"
         card_view:cardElevation="10dp"
         card_view:cardPreventCornerOverlap="false"
-        app:cardBackgroundColor="@color/cardview_light_background">
+        app:cardBackgroundColor="@color/cardview_shadow_start_color">
 
         <TextView
             android:id="@+id/short_description_tv"

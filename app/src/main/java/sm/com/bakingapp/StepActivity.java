@@ -56,7 +56,7 @@ public class StepActivity extends AppCompatActivity {
         }
 
         mToolBar.setTitle(recipeName);
-        mToolBar.setNavigationIcon(getResources().getDrawable(R.drawable.backarrow));
+        mToolBar.setNavigationIcon(getResources().getDrawable(R.drawable.back_arrow_white_24dp));
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

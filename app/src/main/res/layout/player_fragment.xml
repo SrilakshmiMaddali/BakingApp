@@ -21,5 +21,6 @@
         android:layout_weight="0"
         android:padding="20dp"
         android:textSize="20sp"
-        android:text="@string/hardcoded_step_instruction"/>
+        android:text="@string/hardcoded_step_instruction"
+        android:background="@android:color/holo_orange_light"/>
 </LinearLayout>

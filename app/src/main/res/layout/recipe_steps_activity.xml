@@ -9,9 +9,9 @@
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="Hello"
+        app:title="Title"
         app:titleTextColor="@color/colorWhite"
-        android:background="@color/colorPrimary" >
+        android:background="@android:color/holo_green_dark" >
 
     </android.support.v7.widget.Toolbar>
 
@@ -25,7 +25,7 @@
         android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0" />
+        android:layout_weight="0"/>
 
     <LinearLayout
         android:layout_width="match_parent"

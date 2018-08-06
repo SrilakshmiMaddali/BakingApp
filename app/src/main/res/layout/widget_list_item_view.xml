@@ -16,7 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"/>
 
         <TextView
             android:id="@+id/ingredient_amount_widget_tv"
@@ -26,6 +27,7 @@
             android:gravity="end"
             android:layout_weight="1"
             android:textStyle="bold"
+            android:background="@android:color/holo_orange_light"
             />
 
     </LinearLayout>

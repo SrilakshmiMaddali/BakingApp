@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ import retrofit2.Response;
 import sm.com.bakingapp.adapter.RecipesAdapter;
 import sm.com.bakingapp.idlingResource.SimpleIdlingResource;
 import sm.com.bakingapp.util.RetrofitClient;
+import sm.com.bakingapp.widget.WidgetUpdateService;
 
 public class MainActivity extends AppCompatActivity implements RecipesAdapter.ItemClickListener {
 
@@ -38,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.It
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
 
         getIdlingResource();
@@ -73,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.It
             }
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                //Show alert dialog
                 Log.e(TAG, "Error in retrofit");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                 dialog.setCancelable(false);
@@ -107,10 +107,11 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.It
     @Override
     public void onRecipeItemClicked(int position) {
         Recipe item = mRecipes.get(position);
+        Toast.makeText(getApplicationContext(),"Item Selected position "+ position, Toast.LENGTH_SHORT).show();
         Intent detailRecipeListIntent = new Intent(MainActivity.this, RecipeListItemDetailsActivity.class);
         detailRecipeListIntent.putExtra(RecipeListItemDetailsActivity.RECIPE_EXTRA, item);
 
-        //WidgetUpdateService.startActionUpdateListView(getApplicationContext(), item);
+        WidgetUpdateService.startActionUpdateListView(getApplicationContext(), item);
         startActivity(detailRecipeListIntent);
     }
 }

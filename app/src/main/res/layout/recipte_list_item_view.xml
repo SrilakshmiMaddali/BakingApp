@@ -6,14 +6,6 @@
     android:layout_marginTop="5dp"
     android:padding="5dp">
 
-    <ImageView
-        android:id="@+id/recipe_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="220dp"
-        android:src="@drawable/cheesecake"
-        android:scaleType="fitCenter"
-        android:layout_margin="8dp"/>
-
     <TextView
         android:id="@+id/recipe_tv"
         android:layout_width="fill_parent"
@@ -22,5 +14,13 @@
         android:layout_marginBottom="5dp"
         android:gravity="center"
         android:textSize="17sp" />
+    <ImageView
+        android:id="@+id/recipe_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:src="@drawable/cheesecake"
+        android:scaleType="centerInside"
+        android:layout_margin="8dp"
+        />
 
 </LinearLayout>

@@ -85,9 +85,11 @@ public class VideoPlayerFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        currentPosition = mExoPlayer.getCurrentPosition();
-        currentWindow = mExoPlayer.getCurrentWindowIndex();
-        playWhenReady = mExoPlayer.getPlayWhenReady();
+        if(mExoPlayer != null) {
+            currentPosition = mExoPlayer.getCurrentPosition();
+            currentWindow = mExoPlayer.getCurrentWindowIndex();
+            playWhenReady = mExoPlayer.getPlayWhenReady();
+        }
     }
 
     @Override
@@ -117,7 +119,6 @@ public class VideoPlayerFragment extends Fragment {
 
     private void releasePlayer() {
         if (mExoPlayer != null) {
-
             mExoPlayer.release();
             mExoPlayer = null;
         }
