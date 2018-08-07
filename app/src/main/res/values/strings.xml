@@ -5,6 +5,7 @@
     <string name="retry_title">Something went wrong, want to retry?</string>
     <string name="retry_message">Recipe data cannot be loaded. Check for your connection.</string>
     <string name="close_on_intent_error">No data is found.</string>
+    <string name="image_not_loading">Not able to load image or Video.</string>string>
 
     <!--Button name-->
     <string name="retry_button">Retry</string>

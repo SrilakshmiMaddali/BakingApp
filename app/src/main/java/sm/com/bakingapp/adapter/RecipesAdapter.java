@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import sm.com.bakingapp.R;
@@ -42,8 +45,29 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeVi
 
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
-        mData.get(position).setImageId(drawableIds[position]);
+        String imagePath = mData.get(position).getImage();
+        if ( imagePath != null && !imagePath.isEmpty()) {
+            loadImage(imagePath, holder.recipeIv);
+        } else {
+            mData.get(position).setImageId(drawableIds[position]);
+        }
         holder.setData(mData.get(position), position);
+    }
+
+    private void loadImage(String path, ImageView imageView) {
+        Picasso.with(mContext)
+                .load(path)
+                .into(imageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        // image loading finished, so remove progressbar.
+                    }
+
+                    @Override
+                    public void onError() {
+                        // On error , while loading sandwich image, display error message.
+                    }
+                });
     }
 
     @Override

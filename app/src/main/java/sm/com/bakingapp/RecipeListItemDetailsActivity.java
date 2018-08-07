@@ -90,6 +90,7 @@ public class RecipeListItemDetailsActivity extends AppCompatActivity implements 
                 Bundle bundle = new Bundle();
                 bundle.putString(VideoPlayerFragment.DESCRIPTION_EXTRA,stepDescription);
                 bundle.putString(VideoPlayerFragment.VIDEO_URL_EXTRA,videoUrl);
+                bundle.putString(VideoPlayerFragment.IMAGE_URL_EXTRA, url1);
                 VideoPlayerFragment playerFragment = new VideoPlayerFragment();
                 playerFragment.setArguments(bundle);
 

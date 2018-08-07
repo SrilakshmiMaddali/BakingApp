@@ -34,9 +34,9 @@ public class IdlingResourceMainActivityTest {
 
     @Test
     public void loadRecipe() {
-        /*onData(anything()).inAdapterView(ViewMatchers.withId(R.id.recipe_grid_view)).atPosition(0)
+        onData(anything()).inAdapterView(ViewMatchers.withId(R.id.recipe_grid_view)).atPosition(0)
                 .onChildView(ViewMatchers.withId(R.id.recipe_grid_name))
-                .check(matches(withText(startsWith("Nute"))));*/
+                .check(matches(withText(startsWith("Nute"))));
     }
 
     @After

@@ -36,13 +36,13 @@ public class RecipeListitemDetailsActivityTest {
 
     @Test
     public void detailActivityTest() {
-        /*DataInteraction linearLayout = onData(anything())
+        DataInteraction linearLayout = onData(anything())
                 .inAdapterView(allOf(withId(R.id.recipe_grid_view),
                         childAtPosition(
                                 withId(R.id.activity_recipe),
                                 0)))
                 .atPosition(0);
-        linearLayout.perform(click());*/
+        linearLayout.perform(click());
 
         ViewInteraction textView = onView(
                 allOf(withId(android.R.id.text1), withText("Recipe Ingredients"),

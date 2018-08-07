@@ -2,14 +2,17 @@ package sm.com.bakingapp.util;
 
 import android.annotation.SuppressLint;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
@@ -20,12 +23,18 @@ import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+
+import retrofit2.Callback;
+import retrofit2.http.Url;
 import sm.com.bakingapp.R;
 
 public class VideoPlayerFragment extends Fragment {
 
     public static String VIDEO_URL_EXTRA = "video_url";
+    public static String IMAGE_URL_EXTRA = "image_url";
     public static String DESCRIPTION_EXTRA = "description";
     public static String PLAYBACK_POS_EXTRA = "pbpe";
     public static String CURRENT_WINDOW_EXTRA = "window";
@@ -39,6 +48,7 @@ public class VideoPlayerFragment extends Fragment {
     private int currentWindow;
     private boolean playWhenReady = true;
     private String videoUrl;
+    private String imageUrl;
     private String stepDescription;
 
     public VideoPlayerFragment() {
@@ -54,12 +64,13 @@ public class VideoPlayerFragment extends Fragment {
         mStepDescription = view.findViewById(R.id.step_instruction_tv);
 
         videoUrl = getArguments().getString(VIDEO_URL_EXTRA);
+        imageUrl = getArguments().getString(IMAGE_URL_EXTRA);
         stepDescription = getArguments().getString(DESCRIPTION_EXTRA);
         initializePlayer(savedInstanceState);
         mStepDescription.setText(stepDescription);
 
         if (videoUrl.equals("")) {
-            mPlayerView.setVisibility(View.GONE);
+            setImage(imageUrl);
         }
         return view;
     }
@@ -72,8 +83,14 @@ public class VideoPlayerFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (mExoPlayer == null) {
+            initializePlayer(null);
+            mStepDescription.setText(stepDescription);
+            if (videoUrl.equals("")) {
+                setImage(imageUrl);
+            }
+        }
         hideSystemUi();
-
     }
 
     @Override
@@ -139,5 +156,21 @@ public class VideoPlayerFragment extends Fragment {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }
+
+    private void setImage(String path) {
+        try {
+            if (path != null && !path.isEmpty() && !path.equals("") ) {
+                mPlayerView.setDefaultArtwork(Picasso.with(getActivity())
+                        .load(path)
+                        .get());
+            } else {
+                mPlayerView.setVisibility(View.GONE);
+                Toast.makeText(getActivity(),getActivity().getString(R.string.image_not_loading), Toast.LENGTH_SHORT);
+            }
+        } catch (IOException e) {
+            Log.e(VideoPlayerFragment.class.getSimpleName(), "Not able to laod Image");
+        }
+
     }
 }
